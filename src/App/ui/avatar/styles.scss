@@ -1,11 +1,15 @@
 .container {
   width: auto;
   height: auto;
-  padding: 20px;
+  padding: 30px 40px 30px 40px;
   border-radius: 50%;
   border: 2px solid lightgrey;
   img {
     width: 150px;
     height: 150px;
   }
+}
+
+.name {
+  text-align: center;
 }

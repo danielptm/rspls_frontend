@@ -3,7 +3,7 @@ import styles from './styles.scss';
 
 const ControlPanel = (props) => {
     return(
-        <div className={styles.container}>
+        <div className={styles.choicesContainer}>
             {props.children}
         </div>
     )
