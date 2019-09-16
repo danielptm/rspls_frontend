@@ -1,4 +1,11 @@
 .container {
-  width: 100px;
-  height: 100px;
+  width: auto;
+  height: auto;
+  padding: 20px;
+  border-radius: 50%;
+  border: 2px solid lightgrey;
+  img {
+    width: 150px;
+    height: 150px;
+  }
 }

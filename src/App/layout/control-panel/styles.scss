@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 500px;
+  height: auto;
+  padding: 20px 10px 20px 10px;
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+
+}

@@ -1,14 +1,12 @@
 import React from 'react';
 import styles from './styles.scss';
 
-const Avatar = (props) => {
-    return (
+const ControlPanel = (props) => {
+    return(
         <div className={styles.container}>
-            <img src={props.path} />
+            {props.children}
         </div>
     )
-};
+}
 
-
-
-export default Avatar;
+export default ControlPanel;
