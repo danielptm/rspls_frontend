@@ -31,7 +31,9 @@ class App extends Component {
       this.state = {
           choices: [],
           playerName: '',
-          gameStatus: STATUS.PAUSED
+          gameStatus: STATUS.PAUSED,
+          humanScore: 0,
+          computerScore: 0
       }
   }
 
@@ -73,8 +75,28 @@ class App extends Component {
           })
   };
 
+  play = (choice) => {
+      console.log("choice: " + choice);
+      axios.post('http://localhost:8080/play', {"name": this.state.playerName, "choiceId":choice})
+          .then((res) => {
+              console.log(res);
+
+              if (res.data.result == 'lose') {
+                  this.setState({computerScore: this.state.computerScore + 1});
+                  this.setState({gameStatus: STATUS.LOST});
+              } else if (res.data.result == 'win') {
+                  this.setState({humanScore: this.state.humanScore + 1});
+                  this.setState({gameStatus: STATUS.WON});
+              } else {
+                  alert("TIE!");
+              }
+              setTimeout(() => {
+                  this.setState({gameStatus: STATUS.PAUSED});
+              }, 2000)
+          })
+  };
+
   showGameState = (status) => {
-      console.log('hey');
       let result = null;
       switch(status) {
           case STATUS.PAUSED:
@@ -99,15 +121,20 @@ class App extends Component {
       <div className={styles.app}>
           <GameLayout>
             <Avatar
+                score={this.state.humanScore}
                 name={this.state.playerName}
                 path={image}/>
             {this.showGameState(this.state.gameStatus)}
             <Avatar
+                score={this.state.computerScore}
                 name={'Computer'}
                 path={bot}/>
           </GameLayout>
           <ControlPanel>
-              {this.state.choices.map(choice => <Control key={choice.name} path={choice.path}/>)}
+              {this.state.choices.map(choice =>
+                  <Control
+                      click={() => this.play(choice.id)}
+                      key={choice.id} path={choice.path}/>)}
           </ControlPanel>
       </div>
     );

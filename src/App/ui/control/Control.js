@@ -3,7 +3,9 @@ import styles from './styles.scss';
 
 const Control = (props) => {
     return (
-        <div className={styles.container}>
+        <div
+            onClick={props.click}
+            className={styles.container}>
             <img src={props.path} />
         </div>
     )

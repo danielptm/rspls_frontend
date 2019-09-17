@@ -6,7 +6,8 @@ const Avatar = (props) => {
     return (
         <div className={styles.container}>
             <img src={props.path} />
-            <div title={props.name} className={styles.name}>{Text.fitName(props.name)}</div>
+            <div title={props.name} className={styles.center}>{Text.fitName(props.name)}</div>
+            <div className={styles.center}>Score: {props.score}</div>
         </div>
     )
 };
